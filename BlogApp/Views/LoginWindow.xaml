@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlogApp.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-    <Grid>
+        Title="Login" Height="161" Width="324" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="AliceBlue" />
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Image Width="50" Height="50" Source="../Assests/Images/login.png"></Image>
+            <!--Login Form-->
+            <Grid Margin="15,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Username Lable & TextBox-->
+                <Label Grid.Row="0" Grid.Column="0">Username:</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="txtUasername" Width="150" Margin="2"></TextBox>
+
+                <!--Password Lable & TextBox-->
+                <Label Grid.Row="1" Grid.Column="0">Password:</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="txtPassword" Width="150" Margin="2"></TextBox>
+
+
+            </Grid>
+        </StackPanel>
         
-    </Grid>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button Name="btnLogin" Margin="70,0,0,0">Login</Button>
+            <Button Name="btnRegister" Margin="13,0,0,0">Register</Button>
+        </StackPanel>
+    </StackPanel>
 </Window>
