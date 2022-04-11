@@ -2,7 +2,7 @@
 
 namespace BlogApp.Models
 {
-    internal class BlogPost
+    internal class Post
     {
         public User User { get; set; }
         public int Id { get; set; }
