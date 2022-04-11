@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlogApp.Models;
+using BlogApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +29,35 @@ namespace BlogApp.Views
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             RegisterWindow registerWindow = new RegisterWindow();
-            registerWindow.Show();
+            registerWindow.ShowDialog();
+        }
+
+        
+
+        private void Login()
+        {
+            if (txtUasername.Text.Trim() == "" || txtPassword.Password.Trim() == "")
+            {
+                MessageBox.Show("Enter the username & password", "Missing Data !", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            
+             
+            User? currentUser = DbCommands.userExist(txtUasername.Text.Trim());
+            if (currentUser != null && currentUser.Password == txtPassword.Password.Trim())
+            {
+                new MainWindow().Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Wrong data");
+            }
+        }
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
         }
     }
 }

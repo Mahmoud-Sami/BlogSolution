@@ -18,6 +18,11 @@
             <Setter Property="Width" Value="150" />
             <Setter Property="Margin" Value="2" />
         </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
     </Window.Resources>
     
     <StackPanel>
@@ -41,14 +46,14 @@
 
                 <!--Password Lable & TextBox-->
                 <Label Grid.Row="1" Grid.Column="0">Password:</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="txtPassword"></TextBox>
+                <PasswordBox Grid.Row="1" Grid.Column="1" Name="txtPassword"></PasswordBox>
 
 
             </Grid>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Name="btnLogin" Margin="70,0,0,0">Login</Button>
+            <Button Name="btnLogin" Margin="70,0,0,0" Click="btnLogin_Click">Login</Button>
             <Button Name="btnRegister" Margin="13,0,0,0" Click="btnRegister_Click">Register</Button>
         </StackPanel>
     </StackPanel>
