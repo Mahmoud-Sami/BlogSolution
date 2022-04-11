@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlogApp.Models;
+using BlogApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace BlogApp.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+
         public LoginWindow()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

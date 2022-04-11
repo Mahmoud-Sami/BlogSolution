@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogApp.ViewModels
+namespace BlogApp.ViewModels.Commands
 {
-    internal class UserVM
+    internal class LoginCommand
     {
     }
 }

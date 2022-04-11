@@ -7,24 +7,19 @@ using System.Threading.Tasks;
 
 namespace BlogApp.Models
 {
-    internal class BlogDbContext : DbContext
+    public class BlogDbContext : DbContext
     {
-        public DbSet<User> users { get; set; }
-        public DbSet<Post> posts { get; set; }
-
-        public BlogDbContext(DbContextOptions<BlogDbContext> dbContextOptions) : base(dbContextOptions)
-        {
-            Database.EnsureCreated();
-        }
-
+        private const string connectionString = @"Server=LAPTOP-Q4O24L2B;Database=BlogDB;Integrated Security=True;";
+        public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; } 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-Q4O24L2B;Database=BlogDB; Integrated Security=True");
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User[] { new User() { Username = "admin", Password = "123", FullName = "Mahmoud Sami", RegisterDate = DateTime.Now } });
+            modelBuilder.Entity<User>().HasData(new User[] { new User() {Id = 1, Username = "admin", Password = "123", FullName = "Mahmoud Sami", RegisterDate = DateTime.Now } });
             base.OnModelCreating(modelBuilder);
         }
     }
