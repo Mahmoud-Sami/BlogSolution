@@ -42,18 +42,18 @@
 
                 <!--Username Lable & TextBox-->
                 <Label Grid.Row="0" Grid.Column="0">Username:</Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="txtUasername"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="txtUasername" Text="{Binding Username, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
                 <!--Password Lable & TextBox-->
                 <Label Grid.Row="1" Grid.Column="0">Password:</Label>
-                <PasswordBox Grid.Row="1" Grid.Column="1" Name="txtPassword"></PasswordBox>
+                <PasswordBox Grid.Row="1" Grid.Column="1" Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"></PasswordBox>
 
 
             </Grid>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Name="btnLogin" Margin="70,0,0,0">Login</Button>
+            <Button Name="btnLogin" Command="{Binding loginCommand}" Margin="70,0,0,0">Login</Button>
             <Button Name="btnRegister" Margin="13,0,0,0" Click="btnRegister_Click">Register</Button>
         </StackPanel>
     </StackPanel>

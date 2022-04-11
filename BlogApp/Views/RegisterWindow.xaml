@@ -17,6 +17,11 @@
             <Setter Property="Grid.Column" Value="1" />
         </Style>
 
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,3" />
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+
         <Style TargetType="Button">
             <Setter Property="Padding" Value="3" />
             <Setter Property="Background" Value="AliceBlue" />
@@ -39,16 +44,16 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0">Full Name:</Label>
-            <TextBox Grid.Row="0"></TextBox>
+            <TextBox Grid.Row="0" Text="{Binding FullName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label Grid.Row="1">Username:</Label>
-            <TextBox Grid.Row="1"></TextBox>
+            <TextBox Grid.Row="1" Text="{Binding Username, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label Grid.Row="2">Password:</Label>
-            <TextBox Grid.Row="2"></TextBox>
+            <PasswordBox Grid.Row="2" PasswordChanged="PasswordBox_PasswordChanged"></PasswordBox>
 
-            <Button Grid.Row="3" Grid.Column="0" Name="btnExit" Margin="5" Background="DarkRed" Foreground="White">Exit</Button>
-            <Button Grid.Row="3" Grid.Column="1" Name="btnRegister" Margin="0,5">Register</Button>
+            <Button Grid.Row="3" Grid.Column="0" Name="btnExit" Click="btnExit_Click" Margin="5" Background="DarkRed" Foreground="White">Exit</Button>
+            <Button Grid.Row="3" Grid.Column="1" Name="btnRegister" Command="{Binding LoginCommand}" Margin="0,5">Register</Button>
 
 
         </Grid>

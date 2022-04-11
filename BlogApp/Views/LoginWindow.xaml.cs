@@ -21,17 +21,23 @@ namespace BlogApp.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-
-        public LoginWindow()
+        BlogDbContext _dbContext;
+        public LoginWindow(BlogDbContext dbContext)
         {
+            _dbContext = dbContext;
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            this.DataContext = new LoginViewModel(_dbContext, this);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow registerWindow = new RegisterWindow();
+            RegisterWindow registerWindow = new RegisterWindow(_dbContext);
             registerWindow.Show();
+        }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ((LoginViewModel)this.DataContext).Password = (sender as PasswordBox).Password;
         }
     }
 }

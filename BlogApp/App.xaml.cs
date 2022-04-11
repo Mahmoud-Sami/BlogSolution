@@ -19,6 +19,7 @@ namespace BlogApp
             ServiceCollection services = new ServiceCollection();
             services.AddDbContext<BlogDbContext>();
             services.AddSingleton<LoginWindow>();
+            services.AddSingleton<RegisterWindow>();
 
             serviceProvider = services.BuildServiceProvider();
         }

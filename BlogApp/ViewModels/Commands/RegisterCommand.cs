@@ -7,12 +7,12 @@ using System.Windows.Input;
 
 namespace BlogApp.ViewModels.Commands
 {
-    public class LoginCommand : ICommand
+    public class RegisterCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
         private Action _action;
 
-        public LoginCommand(Action action)
+        public RegisterCommand(Action action)
         {
             _action = action;
         }
