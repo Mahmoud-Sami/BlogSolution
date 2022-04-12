@@ -3,9 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BlogApp.Views"
+        xmlns:local="clr-namespace:BlogApp.Views.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        
+        Title="MainWindow" Height="450" Width="600">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="AliceBlue" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <!--LeftSide | Current Account Info-->
         <StackPanel DockPanel.Dock="Left" Background="AliceBlue">
@@ -16,20 +23,27 @@
             </Ellipse>
             <TextBlock Name="tbFullName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center">#</TextBlock>
 
-            <Button Margin="0,15,0,0" Padding="5">
+            <Button Name="btnHome" Margin="0,15,0,0" Padding="5" Click="btnHome_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="25" Height="25"></Image>
+                    <TextBlock Margin="5">Home Page</TextBlock>
+                </StackPanel>
+            </Button>
+            
+            <Button Name="btnCreateNewPost" Margin="0,0,0,0" Padding="5" Click="btnCreateNewPost_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Stretch="Fill" Width="25" Height="25"></Image>
                     <TextBlock Margin="5">Create New Post</TextBlock>
                 </StackPanel>
             </Button>
 
-            <Button Margin="0,0,0,0" Padding="5">
+            <Button Name="Settings" Click="Settings_Click" Margin="0,0,0,0" Padding="5">
                 <StackPanel Orientation="Horizontal">
                     <Image Stretch="Fill" Width="25" Height="25"></Image>
                     <TextBlock Margin="5">Settings</TextBlock>
                 </StackPanel>
             </Button>
-            <Button Margin="0,0,0,0" Padding="5">
+            <Button Name="btnLogout" Click="btnLogout_Click" Margin="0,0,0,0" Padding="5">
                 <WrapPanel>
                     <Image Stretch="Fill" Width="25" Height="25"></Image>
                     <TextBlock Margin="5">Logout</TextBlock>
@@ -37,20 +51,23 @@
             </Button>
         </StackPanel>
         <!--Right Side | Recent Posts-->
-        <TabControl>
-            <TabItem Header="Recent Posts">
-                <StackPanel Name="spPostView">
-                    <TextBlock Text="First Post"></TextBlock>
-                </StackPanel>
+        <TabControl Name="tcSample">
+            <TabItem Header="Recent Posts" Visibility="Collapsed">
+                <ScrollViewer>
+                    <StackPanel Name="spPostView">
+
+                        
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
-            <TabItem Header="Create New Post">
+            <TabItem Header="Create New Post" Visibility="Collapsed">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="8*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
 
-                        
+
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -65,14 +82,14 @@
                     </StackPanel>
 
                     <Label Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold">Body:</Label>
-                    <TextBox Grid.Row="1" Grid.Column="1" Name="txtBody" AcceptsReturn="True" Margin="5"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="txtBody" AcceptsReturn="True" TextWrapping="Wrap" Margin="5"></TextBox>
 
                     <Button Grid.Row="3" Grid.Column="1" Name="btnPost" Margin="5,0" Click="btnPost_Click">Post</Button>
 
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Settings">
+            <TabItem Header="Settings" Visibility="Collapsed">
                 <StackPanel>
                     <Image Width="100" Height="100" Margin="0,10,0,15" Source="../Assests/Images/settings.png"></Image>
                     <!--Registration Form-->

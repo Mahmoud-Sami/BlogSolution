@@ -53,13 +53,32 @@ namespace BlogApp.ViewModels
         {
             using (var db = new BlogDbContext())
             {
-                var post = new Post() { Title = title, Body = body, PublishDate = DateTime.Now };
                 User _user = db.users.Find(user.Id);
+                var post = new Post() { Title = title, Body = body, PublishDate = DateTime.Now};
                 if (_user.posts == null)
                     _user.posts = new List<Post>();
                 _user.posts.Add(post);
                 db.SaveChanges();
             }
+        
+        }
+
+        public static User? getAuthorByPostID(int postID)
+        {
+            
+            using (var db = new BlogDbContext())
+            {
+                foreach (var u in db.users)
+                {
+                    foreach (var p in u.posts)
+                    {
+                        if (p.Id == postID)
+                            return u;
+                    }
+                }
+
+            }
+            return null;
         }
     }
 }

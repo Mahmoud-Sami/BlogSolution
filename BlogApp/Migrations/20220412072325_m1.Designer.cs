@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20220412014752_intial")]
-    partial class intial
+    [Migration("20220412072325_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,12 +39,12 @@ namespace BlogApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("userID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userID");
 
                     b.ToTable("posts");
                 });
@@ -81,16 +81,20 @@ namespace BlogApp.Migrations
                             Id = 1,
                             FullName = "Mahmoud Sami",
                             Password = "123",
-                            RegisterDate = new DateTime(2022, 4, 12, 5, 47, 52, 303, DateTimeKind.Local).AddTicks(2912),
+                            RegisterDate = new DateTime(2022, 4, 12, 11, 23, 25, 23, DateTimeKind.Local).AddTicks(8271),
                             Username = "admin"
                         });
                 });
 
             modelBuilder.Entity("BlogApp.Models.Post", b =>
                 {
-                    b.HasOne("BlogApp.Models.User", null)
+                    b.HasOne("BlogApp.Models.User", "user")
                         .WithMany("posts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("BlogApp.Models.User", b =>

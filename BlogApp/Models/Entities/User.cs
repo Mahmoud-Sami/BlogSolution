@@ -15,6 +15,7 @@ namespace BlogApp.Models
         public string FullName { get; set; }
         public DateTime RegisterDate { get; set; }
 
-        public List<Post> posts { get; set; }
+        
+        public virtual List<Post> posts { get; set; }
     }
 }

@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="BlogApp.Views.UserControls.PostViewUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlogApp.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="157" d:DesignWidth="360">
+    <StackPanel Margin="10" Background="White">
+        <TextBlock 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Margin="10,5,0,2"
+            Width="320"
+            TextTrimming="CharacterEllipsis"
+            HorizontalAlignment="Left"
+            Foreground="OrangeRed"
+            Text="{Binding Title}"/>
+        <WrapPanel>
+            <TextBlock 
+            FontSize="12" 
+            FontWeight="Light" 
+            Margin="10,0,0,0"
+            TextTrimming="CharacterEllipsis"
+            HorizontalAlignment="Left"
+            Foreground="DarkBlue"
+            FontStyle="Italic"
+            Text="{Binding Author}"/>
+
+            <TextBlock Margin="5,0,0,0" Padding="0,0,0,0">|</TextBlock>
+
+            <TextBlock
+            FontSize="12" 
+            FontWeight="Light" 
+            Margin="5,0,0,0"
+            TextTrimming="CharacterEllipsis"
+            HorizontalAlignment="Left"
+            Foreground="Gray"
+            FontStyle="Italic"
+            Text="{Binding Date}"/>
+        </WrapPanel>
+
+        <TextBlock 
+            Width="320" 
+            Height="40" 
+            TextTrimming="CharacterEllipsis" 
+            TextWrapping="Wrap" Margin="10, 2, 0, 0" 
+            HorizontalAlignment="Left"
+            Foreground="Gray"
+            Text="{Binding Body}"/>
+        <Button Margin="5,0" Background="AliceBlue">View Post</Button>
+        <TextBlock Margin="7,15,7,0">_______________________________________________________________________</TextBlock>
+    </StackPanel>
+</UserControl>

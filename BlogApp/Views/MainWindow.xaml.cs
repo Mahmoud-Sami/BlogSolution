@@ -1,5 +1,6 @@
 ﻿using BlogApp.Models;
 using BlogApp.ViewModels;
+using BlogApp.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,27 @@ namespace BlogApp.Views
             tbFullName.Text = currentUser.FullName;
             this.DataContext = currentUser;
 
-            TextBox test = new TextBox();
-            test.Text = "Line 2";
-            spPostView.Children.Add(test);
+            tcSample.SelectedIndex = 0;
+            UpdateHome();
+            
+        }
+
+        private void UpdateHome()
+        {
+            spPostView.Children.Clear();
+            using (var db = new BlogDbContext())
+            {
+                List<Post> posts = db.posts.ToList().OrderByDescending(o => o.PublishDate).ToList();
+                foreach (var post in posts)
+                {
+                    PostViewUC postView = new PostViewUC();
+                    postView.Title = post.Title;
+                    postView.Body = post.Body;
+                    postView.Author = db.users.Find(post.userID).FullName;
+                    postView.Date = post.PublishDate.ToString("dddd, dd MMMM yyyy");
+                    spPostView.Children.Add(postView);
+                }
+            }
         }
 
         private void btnPost_Click(object sender, RoutedEventArgs e)
@@ -44,6 +63,8 @@ namespace BlogApp.Views
 
             DbCommands.Post(txtTitle.Text, txtBody.Text, currentUser);
             MessageBox.Show("Post Published ", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            UpdateHome();
+            tcSample.SelectedIndex = 0;
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -60,5 +81,31 @@ namespace BlogApp.Views
             MessageBox.Show($"Data Updated", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            tcSample.SelectedIndex = 0;
+
+        }
+        private void btnCreateNewPost_Click(object sender, RoutedEventArgs e)
+        {
+            tcSample.SelectedIndex = 1;
+            txtTitle.Text = "";
+            txtBody.Text = "";
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            tcSample.SelectedIndex = 2;
+
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            new LoginWindow().Show();
+            this.Close();
+        }
+
+        
     }
 }

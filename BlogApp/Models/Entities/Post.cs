@@ -14,5 +14,8 @@ namespace BlogApp.Models
         public string Body { get; set; }
         public DateTime PublishDate { get; set; }
 
+        public int userID { get; set; }
+        public virtual User user { get; set; }
+
     }
 }

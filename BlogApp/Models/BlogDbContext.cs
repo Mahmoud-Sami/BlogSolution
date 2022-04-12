@@ -14,7 +14,7 @@ namespace BlogApp.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-Q4O24L2B;Database=BlogDB; Integrated Security=True");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=LAPTOP-Q4O24L2B;Database=BlogDB; Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
