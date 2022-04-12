@@ -44,6 +44,7 @@ namespace BlogApp.Views
             {
                 DbCommands.UserRegister(txtFullName.Text.Trim(), txtUsername.Text.Trim(), txtPassword.Password.Trim());
                 MessageBox.Show($"Welcome, {txtFullName.Text.Trim()}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
 
             }
             else

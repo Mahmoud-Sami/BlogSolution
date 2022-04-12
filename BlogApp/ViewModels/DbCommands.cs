@@ -34,5 +34,32 @@ namespace BlogApp.ViewModels
                 db.SaveChanges();
             }
         }
+
+        public static User UserEdit(User user, string fullName, string passowrd)
+        {
+            User _user = null;
+            using (var db = new BlogDbContext())
+            {
+                _user = db.users.Find(user.Id);
+                _user.FullName = fullName;
+                if (passowrd.Trim() != "")
+                    _user.Password = passowrd;
+                db.SaveChanges();
+            }
+            return _user;
+        }
+
+        public static void Post(string title, string body, User user)
+        {
+            using (var db = new BlogDbContext())
+            {
+                var post = new Post() { Title = title, Body = body, PublishDate = DateTime.Now };
+                User _user = db.users.Find(user.Id);
+                if (_user.posts == null)
+                    _user.posts = new List<Post>();
+                _user.posts.Add(post);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace BlogApp.Views
             User? currentUser = DbCommands.userExist(txtUasername.Text.Trim());
             if (currentUser != null && currentUser.Password == txtPassword.Password.Trim())
             {
-                new MainWindow().Show();
+                new MainWindow(currentUser).Show();
                 this.Close();
             }
             else

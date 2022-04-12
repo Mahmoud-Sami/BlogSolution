@@ -11,12 +11,19 @@
         <StackPanel DockPanel.Dock="Left" Background="AliceBlue">
             <Ellipse Height="150" Width="150" Margin="15,15,15,5">
                 <Ellipse.Fill>
-                    <ImageBrush/>
+                    <ImageBrush ImageSource="../Assests/Images/newUser.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <TextBlock FontSize="20" FontWeight="Bold" HorizontalAlignment="Center">Mahmoud Sami</TextBlock>
+            <TextBlock Name="tbFullName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center">#</TextBlock>
 
             <Button Margin="0,15,0,0" Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="25" Height="25"></Image>
+                    <TextBlock Margin="5">Create New Post</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Margin="0,0,0,0" Padding="5">
                 <StackPanel Orientation="Horizontal">
                     <Image Stretch="Fill" Width="25" Height="25"></Image>
                     <TextBlock Margin="5">Settings</TextBlock>
@@ -29,13 +36,78 @@
                 </WrapPanel>
             </Button>
         </StackPanel>
-        <!--RightSide | Online Users In The Server-->
-        <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Background="AntiqueWhite">
-            <TextBlock>Online Users</TextBlock>
-        </StackPanel>
-        <!--MidSide | Chatting Area-->
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray">
-            <TextBlock>Test</TextBlock>
-        </StackPanel>
+        <!--Right Side | Recent Posts-->
+        <TabControl>
+            <TabItem Header="Recent Posts">
+                <StackPanel Name="spPostView">
+                    <TextBlock Text="First Post"></TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Create New Post">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="8*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+
+                        
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" FontSize="16" FontWeight="Bold">Title:</Label>
+                    <StackPanel Grid.Row="0" Grid.Column="1">
+                        <TextBox Name="txtTitle" MaxLength="50" Margin="5,5,5,0"></TextBox>
+                        <TextBlock Margin="5,0" FontSize="10" FontStyle="Italic" Foreground="Gray" Text="{Binding Path=Text.Length ,ElementName=txtTitle, StringFormat=' {0}/50'}"></TextBlock>
+                    </StackPanel>
+
+                    <Label Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold">Body:</Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="txtBody" AcceptsReturn="True" Margin="5"></TextBox>
+
+                    <Button Grid.Row="3" Grid.Column="1" Name="btnPost" Margin="5,0" Click="btnPost_Click">Post</Button>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <StackPanel>
+                    <Image Width="100" Height="100" Margin="0,10,0,15" Source="../Assests/Images/settings.png"></Image>
+                    <!--Registration Form-->
+                    <Grid Margin="5,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Full Name:</Label>
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="txtFullNameEdit" Margin="0,3" Text="{Binding Path=FullName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"></TextBox>
+
+                        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold">Username:</Label>
+                        <TextBox Grid.Row="1" Grid.Column="1" Name="txtUsernameEdit" Margin="0,3" IsReadOnly="True" Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                        <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold">Password:</Label>
+                        <PasswordBox Grid.Row="2" Grid.Column="1" Name="txtPasswordEdit" Margin="0,3"></PasswordBox>
+
+
+                        <Button Grid.Row="3" Grid.Column="1" Name="btnUpdate" Margin="0,5" Click="btnUpdate_Click">Update Data</Button>
+
+
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+
+
     </DockPanel>
 </Window>
